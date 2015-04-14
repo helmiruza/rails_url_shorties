@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Url</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/">URL Shorties</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/">Home</a></li>
+              <li class="active"><a href="/dashboard">Dashboard</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            	<% if session[:username] == nil%>
+            	<li><a>Not Logged In</a></li>
+              <li><a href="/signup">Sign Up</a></li>
+              <li><a href="/login">Login</a></li>
+              <% else %>
+              <li><a>Logged As : <%= session[:username]%></a></li>
+              <% end %>
+              <li><a href="/user/logout">Logout</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+
+<%= yield %>
+
+</body>
+</html>

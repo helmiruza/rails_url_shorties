@@ -1,0 +1,39 @@
+<center>
+  <div class="container">
+    <h1>URL Shorties!</h1>
+    <h3>Input your URL</h3>
+
+    <center>  
+      <%= form_for @uri do |f| %>
+        <%= f.text_field :original_uri, :placeholder => "eg: http://google.com" %>
+        <%= f.submit "Get Short URL" %>
+      <% end %>
+    </center>
+
+    </form>
+  <br>
+
+    <center>
+      <h1>Public URLs</h1>
+        <table class="table table-hover">
+          <tr>
+            <th>Original URL</th>
+            <th>Shortened URL</th>
+            <th>URL Counter</th>
+          </tr>
+          <% if !@uris.nil? %>
+          <% @uris.each do |uri|%>
+          <tr>
+            <td><%= uri.original_uri %></td>
+            <td><a href="/<%=uri.short_uri %>">http://<%=request.host%>:<%=request.port%>/<%=uri.short_uri %></a></td>
+            <td><%= uri.click_count %></td>
+          </tr>
+          <% end %>
+          <% end %>
+          <tr>
+        </table>
+  </center>
+
+  </div>
+</center>
+

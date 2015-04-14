@@ -1,0 +1,37 @@
+<div class="container">
+<div class="container">
+
+  <div class="jumbotron">
+    <center>
+        <h1>Get URL!</h1>
+        <b>Original URL :</b><%=@uri.original_uri%><br>
+        <b>Short URL :</b><a href="/<%=@uri.short_uri%>"><%="#{request.host}:#{request.port}/#{@uri.short_uri}"%></a>
+    </center>
+  </div>
+
+<div>
+  <center>
+  <% if session[:username] == nil %>
+  <% else %>
+  <h1>Your URLs</h1>
+    <table class="table table-hover">
+    <tr>
+        <th>Original URL</th>
+        <th>Shortened URL</th>
+        <th>URL Counter</th>
+      </tr>
+      <% if !@uris.nil? %>
+      <% @uris.each do |uri|%>
+      <tr>
+        <td><%= uri.original_uri %></td>
+        <td><a href="/<%=uri.short_uri %>">http://<%=request.host%>:<%=request.port%>/<%=uri.short_uri %></a></td>
+        <td><%= uri.click_count %></td>
+      </tr>
+      <% end %>
+      <% end %>
+      <tr>
+    </table>
+    <% end %>
+  </center>
+</div>
+</div>
